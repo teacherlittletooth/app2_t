@@ -4,26 +4,21 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Tela de login",
+      debugShowCheckedModeBanner: false,
+      title: "Login",
       theme: ThemeData(
-        primaryColor: Colors.black
+        primarySwatch: Colors.deepPurple
       ),
       home: const MyLogin()
     );
   }
 }
-
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -47,48 +42,59 @@ class _MyLoginState extends State<MyLogin> {
         child: Column(
           children: <Widget>[
             Container(
-              width: 150,
-              child: Image.asset("lib/img/logo.gif")
+              width: 200,
+              child: Image.asset("lib/img/logo.png"),
             ),
-            Padding(
-              padding: const EdgeInsets.all(30),
+            Container(
+              padding: EdgeInsets.only(left: 50, right: 50),
               child: TextField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Email"
                 ),
-                style: const TextStyle(
-                  fontSize: 24
+                keyboardType: TextInputType.emailAddress,
+                style: TextStyle(
+                  fontSize: 22
                 ),
                 controller: _ctrlEmail
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            Container(
+              padding: EdgeInsets.only(left: 50, right: 50, top: 30, bottom: 30),
               child: TextField(
+                decoration: InputDecoration(
+                  labelText: "Senha",
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.visibility),
+                    onPressed: (){
+                      print("Mudou...");
+                    },
+                  )
+                ),
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
-                  labelText: "Senha"
+                style: TextStyle(
+                  fontSize: 22
                 ),
-                style: const TextStyle(
-                  fontSize: 24
-                ),
-                controller: _ctrlPass,
-                obscureText: true
+                obscureText: true,
+                controller: _ctrlPass
               ),
             ),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                print(
+                  "Email: ${_ctrlEmail.text}\n"+
+                  "Senha: ${_ctrlPass.text}"
+                );
+              },
               child: Container(
-                padding: const EdgeInsets.all(10),
-                width: 200,
-                child: const Text(
-                  "Login",
+                padding: EdgeInsets.all(20),
+                width: 150,
+                child: Text(
+                  "Login", 
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 24
+                    fontSize: 22
                   ),
-                ),
+                )
               )
             )
           ],
