@@ -30,6 +30,7 @@ class MyLogin extends StatefulWidget {
 class _MyLoginState extends State<MyLogin> {
   final TextEditingController _ctrlEmail = TextEditingController();
   final TextEditingController _ctrlPass = TextEditingController();
+  bool _eye = true;
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +65,11 @@ class _MyLoginState extends State<MyLogin> {
                 decoration: InputDecoration(
                   labelText: "Senha",
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.visibility),
+                    icon: (_eye) ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
                     onPressed: (){
-                      print("Mudou...");
+                      setState(() {
+                        _eye = !_eye;
+                      });
                     },
                   )
                 ),
@@ -74,7 +77,7 @@ class _MyLoginState extends State<MyLogin> {
                 style: TextStyle(
                   fontSize: 22
                 ),
-                obscureText: true,
+                obscureText: _eye,
                 controller: _ctrlPass
               ),
             ),
