@@ -11,4 +11,3 @@
 *** Aula 9 ***
 - Criando função para validar login;
 - AlertDialog / showDialog;
-- Navigator.pop
