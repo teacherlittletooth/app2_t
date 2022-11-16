@@ -6,8 +6,9 @@
 *** Aula 8 ***
 - Criando uma tela de login;
 - Importando imagem com Image.asset() (informando a mesma no pubspec.yaml);
-- TextEditingController para o atributo controller do widget TextField;
+- TextEditingController para o atributo controller do widget TextField.
 
 *** Aula 9 ***
 - Criando função para validar login;
 - AlertDialog / showDialog;
+- Navigator.of(context).push().
