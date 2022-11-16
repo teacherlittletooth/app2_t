@@ -8,3 +8,7 @@
 - Importando imagem com Image.asset() (informando a mesma no pubspec.yaml);
 - TextEditingController para o atributo controller do widget TextField;
 
+*** Aula 9 ***
+- Criando função para validar login;
+- AlertDialog / showDialog;
+- Navigator.pop
