@@ -9,7 +9,29 @@ class MyOtherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Página 2"),
+        title: Text("Tela inicial"),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: Container(
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundColor: Colors.black,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("lib/img/logo.png"),
+            fit: BoxFit.cover
+          )
+        ),
       ),
     );
   }
