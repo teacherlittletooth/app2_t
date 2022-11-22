@@ -12,3 +12,8 @@
 - Criando função para validar login;
 - AlertDialog / showDialog;
 - Navigator.of(context).push().
+
+*** Aula 10 ***
+- Checkbox e Radio;
+- CheckboxListTile e RadioListTile;
+- Métodos do onPressed destes botões.
