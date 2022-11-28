@@ -53,10 +53,10 @@ class _MyListViewState extends State<MyListView> {
             title: Text(paises.keys.elementAt(itens)),
             trailing: FlutterLogo(),
             onTap: (){
-              print("Clicou no item $itens");
+              print("Clicou no ${paises.keys.elementAt(itens)}");
             },
             onLongPress: (){
-              print("Segurou por mais tempo o item $itens");
+              print("Segurou por mais tempo o ${paises.keys.elementAt(itens)}");
             }
           );
         }
