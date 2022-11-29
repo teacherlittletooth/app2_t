@@ -5,10 +5,10 @@ void main() {
 }
 
 Map<String, String> paises = {
-  "Brasil":"https://cdn-icons-png.flaticon.com/128/299/299956.png",
-  "Argentina":"https://img.olx.com.br/thumbs256x256/98/987241347014813.jpg",
-  "Equador":"https://cdn-icons-png.flaticon.com/128/300/300107.png"
+  "Brasil"    : "https://cdn-icons-png.flaticon.com/128/299/299956.png",
+  "Uruguai"   : "https://cdn-icons-png.flaticon.com/128/7343/7343198.png",
 };
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.red
+        primarySwatch: Colors.deepOrange
       ),
       home: MyListView()
     );
@@ -37,27 +37,38 @@ class _MyListViewState extends State<MyListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Icon(
-          Icons.baby_changing_station_rounded,
-          size: 50,
+          Icons.emoji_people,
+          size: 50
         ),
-        centerTitle: true
       ),
       body: ListView.builder(
-        itemCount: paises.length, //Pegando o tamanho da lista
-        itemBuilder: (context, itens){
+        itemCount: paises.length,
+        itemBuilder: (context, item) {
           return ListTile(
             leading: Image(
-              image: NetworkImage(paises.values.elementAt(itens))
+              image: NetworkImage(
+                paises.values.elementAt(item),
+              ),
             ),
-            title: Text(paises.keys.elementAt(itens)),
-            trailing: FlutterLogo(),
-            onTap: (){
-              print("Clicou no ${paises.keys.elementAt(itens)}");
-            },
+            title: Text(paises.keys.elementAt(item)),
+            //subtitle: Text("Uma frase de efeito"),
+            //trailing: FlutterLogo(),
             onLongPress: (){
-              print("Segurou por mais tempo o ${paises.keys.elementAt(itens)}");
-            }
+               final snackBar = SnackBar(
+                  content: Text("Vai ${paises.keys.elementAt(item)}!"),
+                  action: SnackBarAction(
+                    label: 'Desfazer',
+                    onPressed: (){
+                    // código para desfazer a ação!
+                    },
+                  ),
+                );
+                // Encontra o Scaffold na árvore de widgets
+                // e o usa para exibir o SnackBar!
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
           );
         }
       ),
