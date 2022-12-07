@@ -28,29 +28,37 @@ class MyJson extends StatefulWidget {
 
 class _MyJsonState extends State<MyJson> {
 
+  int _value = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("JSON"),
         actions: <Widget>[
+          
           PopupMenuButton(
+            onSelected: ((result) {
+              switch(result){
+                case 1:
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyWebApi()));
+                  break;
+              }
+            }),
             icon: Icon(Icons.forward),
             iconSize: 40,
             itemBuilder: (context) {
               return [
+                
                 PopupMenuItem(
+                  value: 1,
                   child: Text("Outra página"),
-                  onTap: (){
-                    print("Apertou-me");
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyWebApi()
-                        )
-                    );
-                  },
-                )  
+                ),
+                
+                PopupMenuItem(
+                  value: 2,
+                  child: Text("Mais um item (faz nada)"),
+                ),  
               ];
             }
           )
@@ -73,7 +81,7 @@ class _MyJsonState extends State<MyJson> {
                 ),
                 trailing: Text(
                   content[index]["email"]
-                )
+                ),
               );
             },
           );
