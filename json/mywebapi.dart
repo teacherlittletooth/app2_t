@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -18,20 +20,27 @@ class _MyWebApiState extends State<MyWebApi> {
   String _cepRecebido = "";
 
   void _retornaCep() async {
-    String urlJson = "https://viacep.com.br/ws/"+ _cep.text +"/json/";
-    Http.Response response = await Http.get(Uri.parse(urlJson));
+    try {
+      String urlJson = "https://viacep.com.br/ws/"+ _cep.text +"/json/";
+      Http.Response response = await Http.get(Uri.parse(urlJson));
 
-    Map site = json.decode(response.body);
+      Map site = json.decode(response.body);
+    
+      String ruaJson = site["logradouro"];
+      String cidadeJson = site["localidade"];
+      String bairroJson = site["bairro"];
+      String ufJson = site["uf"];
 
-    String ruaJson = site["logradouro"];
-    String cidadeJson = site["localidade"];
-    String bairroJson = site["bairro"];
-    String ufJson = site["uf"];
+      setState(() {
+        _cepRecebido = ruaJson + "\n" + cidadeJson + "\n" + bairroJson + "\n" + ufJson;
+        print(ruaJson + "\n" + cidadeJson + "\n" + bairroJson + "\n" + ufJson);
+      });
 
-    setState(() {
-      _cepRecebido = ruaJson + "\n" + cidadeJson + "\n" + bairroJson + "\n" + ufJson;
-      print(ruaJson + "\n" + cidadeJson + "\n" + bairroJson + "\n" + ufJson);
-    });
+    } catch(erro) {
+      setState(() {
+        _cepRecebido = "Cep não encontrado!";
+      });
+    }    
   }
 
   @override
