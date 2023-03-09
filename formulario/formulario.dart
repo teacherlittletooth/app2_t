@@ -13,7 +13,7 @@ class _MyFormState extends State<MyForm> {
   TextEditingController _nomeControl = TextEditingController();
   String? _tipo;
   int _tipoSec = 0;
-  bool _magico = false, _fisico = false;
+  bool _magico = false, _fisico = false, _raro = false;
   
   @override
   Widget build(BuildContext context) {
@@ -155,23 +155,42 @@ class _MyFormState extends State<MyForm> {
 
           Text("Ataques:"),
 
-          Checkbox(
-            value: _fisico,
-            onChanged: (val){
-              setState(() {
-                _fisico = !_fisico;
-              });
-            }
+          Row(
+            children: [
+              Checkbox(
+                value: _fisico,
+                onChanged: (val){
+                  setState(() {
+                    _fisico = !_fisico;
+                  });
+                }
+              ), Text("Físico"),
+              
+              Checkbox(
+                value: _magico,
+                onChanged: (val){
+                  setState(() {
+                    _magico = !_magico;
+                  });
+                }
+              ), Text("Mágico"),
+
+            ],
           ),
-          
-          Checkbox(
-            value: _magico,
-            onChanged: (val){
-              setState(() {
-                _magico = !_magico;
-              });
-            }
+
+          SwitchListTile(
+            title: Text("Raro"),
+            value: _raro,
+            onChanged: (val) => setState(() {
+              _raro = !_raro;
+            })
           ),
+
+          ElevatedButton.icon(
+            onPressed: (){},
+            icon: Icon(Icons.catching_pokemon_sharp),
+            label: Text("Registrar"),
+          )
         ],
       ),
 
