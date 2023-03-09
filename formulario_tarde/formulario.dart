@@ -30,138 +30,187 @@ class _MyFormState extends State<MyForm> {
           )
       ),
       //////////////////////////////////////
-      body: Column(
-        children: [
-          //////////////////////////////////
-          Text(
-            "Pesquisa de satisfação",
-            style: TextStyle(fontSize: 18),
-          ),
-          /////////////////////////////////
-          TextField(
-            controller: _superControl,
-            decoration: InputDecoration(
-              label: Text("Nome do mercado")
-            )
-          ),
-          /////////////////////////////////
-          DropdownButton(
-            value: _diaDaSemana,
-            hint: Text("Selecione o dia da semana"),
-            items: [
-              DropdownMenuItem(
-                value: "Domingo",
-                onTap: () => _diaDaSemana = "Domingo",
-                child: Text("Domingo"),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              //////////////////////////////////
+              Text(
+                "Pesquisa de satisfação",
+                style: TextStyle(fontSize: 18),
               ),
-              DropdownMenuItem(
-                value: "Segunda",
-                onTap: () => _diaDaSemana = "Segunda",
-                child: Text("Segunda"),
+              /////////////////////////////////
+              SizedBox(height: 30),
+              /////////////////////////////////
+              TextField(
+                controller: _superControl,
+                decoration: InputDecoration(
+                  label: Text("Nome do mercado")
+                )
               ),
-              DropdownMenuItem(
-                value: "Terça",
-                onTap: () => _diaDaSemana = "Terça",
-                child: Text("Terça"),
+              /////////////////////////////////
+              SizedBox(height: 30),
+              /////////////////////////////////
+              DropdownButton(
+                isExpanded: true,
+                value: _diaDaSemana,
+                hint: Text("Selecione o dia da semana"),
+                items: [
+                  DropdownMenuItem(
+                    value: "Domingo",
+                    onTap: () => _diaDaSemana = "Domingo",
+                    child: Text("Domingo"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Segunda",
+                    onTap: () => _diaDaSemana = "Segunda",
+                    child: Text("Segunda"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Terça",
+                    onTap: () => _diaDaSemana = "Terça",
+                    child: Text("Terça"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Quarta",
+                    onTap: () => _diaDaSemana = "Quarta",
+                    child: Text("Quarta"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Quinta",
+                    onTap: () => _diaDaSemana = "Quinta",
+                    child: Text("Quinta"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Sexta",
+                    onTap: () => _diaDaSemana = "Sexta",
+                    child: Text("Sexta"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Sábado",
+                    onTap: () => _diaDaSemana = "Sábado",
+                    child: Text("Sábado"),
+                  )
+                ],
+                onChanged: (obj) => setState(() {})
               ),
-              DropdownMenuItem(
-                value: "Quarta",
-                onTap: () => _diaDaSemana = "Quarta",
-                child: Text("Quarta"),
+              ////////////////////////////////
+              SizedBox(height: 30),
+              ////////////////////////////////
+              Text(
+                "Forma de pagamento",
+                style: TextStyle(fontSize: 18),
               ),
-              DropdownMenuItem(
-                value: "Quinta",
-                onTap: () => _diaDaSemana = "Quinta",
-                child: Text("Quinta"),
+              ////////////////////////////////
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ////////////////////////////
+                  Radio(
+                    value: 0,
+                    groupValue: _pgto,
+                    onChanged: (val) => setState(() {
+                       _pgto = 0;
+                    })
+                  ), Text("Crédito"),
+                  ////////////////////////////
+                  SizedBox(width: 60),
+                  ////////////////////////////
+                  Radio(
+                    value: 1,
+                    groupValue: _pgto,
+                    onChanged: (val) => setState(() {
+                      _pgto = 1;
+                    })
+                  ), Text("Débito"),
+                  ///////////////////////////
+                  SizedBox(width: 60),
+                  ////////////////////////////
+                  Radio(
+                    value: 2,
+                    groupValue: _pgto,
+                    onChanged: (val) => setState(() {
+                      _pgto = 2;
+                    })
+                  ), Text("Dinheiro")
+                ]
               ),
-              DropdownMenuItem(
-                value: "Sexta",
-                onTap: () => _diaDaSemana = "Sexta",
-                child: Text("Sexta"),
+              ///////////////////////////////////
+              SizedBox(height: 30),
+              ///////////////////////////////////
+              Text(
+                "O que mais chamou a atenção",
+                style: TextStyle(fontSize: 18),
               ),
-              DropdownMenuItem(
-                value: "Sábado",
-                onTap: () => _diaDaSemana = "Sábado",
-                child: Text("Sábado"),
+              //////////////////////////////////
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ///////////////////////////////
+                  Checkbox(
+                    value: _bom,
+                    onChanged: (val) => setState(() {
+                      _bom = !_bom;
+                    })
+                  ), Text("Bom"),
+                  ///////////////////////////////
+                  SizedBox(width: 60),
+                  ///////////////////////////////
+                  Checkbox(
+                    value: _bonito,
+                    onChanged: (val) => setState(() {
+                      _bonito = !_bonito;
+                    })
+                  ), Text("Bonito"),
+                  ///////////////////////////////
+                  SizedBox(width: 60),
+                  ///////////////////////////////
+                  Checkbox(
+                    value: _barato,
+                    onChanged: (val) => setState(() {
+                      _barato = !_barato;
+                    })
+                  ), Text("Barato"),
+                ],
+              ),
+              ///////////////////////////////////
+              SizedBox(height: 30),
+              ///////////////////////////////////
+              SwitchListTile(
+                title: Text("Recomenda este mercado?"),
+                value: _recomenda,
+                onChanged: (value) => setState(() {
+                  _recomenda = !_recomenda;
+                })
+              ),
+              ///////////////////////////////////
+              SizedBox(height: 30),
+              ///////////////////////////////////
+              Container(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.only(top: 15, bottom: 15))
+                  ),
+                  icon: Icon(
+                    Icons.shopping_cart_outlined,
+                    color: Colors.white,
+                  ),
+                  onPressed: (){},
+                  label: Text(
+                    "Enviar dados",
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.white
+                    ),
+                  )
+                ),
               )
             ],
-            onChanged: (obj) => setState(() {})
           ),
-          ////////////////////////////////
-          Text(
-            "Forma de pagamento",
-            style: TextStyle(fontSize: 18),
-          ),
-          ////////////////////////////////
-          Row(
-            children: [
-              Radio(
-                value: 0,
-                groupValue: _pgto,
-                onChanged: (val) => setState(() {
-                   _pgto = 0;
-                })
-              ), Text("Crédito"),
-              Radio(
-                value: 1,
-                groupValue: _pgto,
-                onChanged: (val) => setState(() {
-                  _pgto = 1;
-                })
-              ), Text("Débito"),
-              Radio(
-                value: 2,
-                groupValue: _pgto,
-                onChanged: (val) => setState(() {
-                  _pgto = 2;
-                })
-              ), Text("Dinheiro")
-            ]
-          ),
-          ///////////////////////////////////
-          Text(
-            "O que mais chamou a atenção",
-            style: TextStyle(fontSize: 18),
-          ),
-          //////////////////////////////////
-          Row(
-            children: [
-              Checkbox(
-                value: _bom,
-                onChanged: (val) => setState(() {
-                  _bom = !_bom;
-                })
-              ), Text("Bom"),
-
-              Checkbox(
-                value: _bonito,
-                onChanged: (val) => setState(() {
-                  _bonito = !_bonito;
-                })
-              ), Text("Bonito"),
-
-              Checkbox(
-                value: _barato,
-                onChanged: (val) => setState(() {
-                  _barato = !_barato;
-                })
-              ), Text("Barato"),
-            ],
-          ),
-          ///////////////////////////////////
-          Text("Recomenda este mercado?"),
-          Switch(
-            value: _recomenda,
-            onChanged: (value) => setState(() {
-              _recomenda = !_recomenda;
-            })
-          ),
-          ///////////////////////////////////
-          ElevatedButton(
-            onPressed: (){},
-            child: Text("Enviar dados")
-          )
-        ],
+        ),
       ),
     );
   }
