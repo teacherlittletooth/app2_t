@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:formulario/model/supermercado.dart';
 
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
@@ -14,6 +15,20 @@ class _MyFormState extends State<MyForm> {
   String? _diaDaSemana;
   int _pgto = 0;
   bool _bom = false, _bonito = false, _barato = false, _recomenda = false;
+
+  void _getFields() {
+    Supermercado mercado = Supermercado(
+      _superControl.text,
+      _diaDaSemana,
+      _pgto,
+      _bom,
+      _bonito,
+      _barato,
+      _recomenda
+    );
+
+    print(mercado);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +213,7 @@ class _MyFormState extends State<MyForm> {
                     Icons.shopping_cart_outlined,
                     color: Colors.white,
                   ),
-                  onPressed: (){},
+                  onPressed: _getFields,
                   label: Text(
                     "Enviar dados",
                     style: TextStyle(
