@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:formulario/model/seguro.dart';
+import 'package:formulario/receba.dart';
 
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
@@ -17,6 +19,27 @@ class _MyFormState extends State<MyForm> {
        _contratada = false,
        _contratante = false,
        _vip = false;
+
+  void _getFields() {
+    Seguro seg = Seguro(
+      _control.text,
+      _seg,
+      _radioSeg,
+      _testemunhas,
+      _contratada,
+      _contratante,
+      _vip
+    );
+
+    print(seg);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Receba(seg: seg)
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +206,7 @@ class _MyFormState extends State<MyForm> {
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(EdgeInsets.only(top: 20, bottom: 20))
                 ),
-                onPressed: (){},
+                onPressed: _getFields,
                 icon: Icon(Icons.receipt_long_sharp),
                 label: Text(
                   "Registrar",
