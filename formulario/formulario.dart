@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:formulario/model/pokemon.dart';
+import 'package:formulario/receba.dart';
 
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
@@ -14,11 +16,30 @@ class _MyFormState extends State<MyForm> {
   String? _tipo;
   int _tipoSec = 0;
   bool _magico = false, _fisico = false, _raro = false;
+
+  void _getFields() {
+    Pokemon poke = Pokemon(
+      _nomeControl.text,
+      _tipo,
+      _tipoSec,
+      _magico,
+      _fisico,
+      _raro
+    );
+
+    print(poke);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Receba(pokemon: poke))
+    );
+  }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       
+      drawer: Drawer(),
+
       appBar: AppBar(
         title: const Text(
                       "POKEDEX",
@@ -219,7 +240,7 @@ class _MyFormState extends State<MyForm> {
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(EdgeInsets.only(top: 15, bottom: 15))
                   ),
-                  onPressed: (){},
+                  onPressed: _getFields,
                   icon: Icon(Icons.catching_pokemon_sharp),
                   label: Text(
                     "Registrar",
