@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:formulario/model/supermercado.dart';
+import 'package:formulario/receba.dart';
 
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
@@ -28,6 +29,11 @@ class _MyFormState extends State<MyForm> {
     );
 
     print(mercado);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Receba(mercado: mercado))
+    );
   }
 
   @override
