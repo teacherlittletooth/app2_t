@@ -123,7 +123,8 @@ class _MyFormState extends State<MyForm> {
                 ),
               ),
               
-              SingleChildScrollView(
+              Container(
+                padding: EdgeInsets.only(top: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -168,31 +169,40 @@ class _MyFormState extends State<MyForm> {
                 ),
               ),
               
+              SizedBox(height: 20),
+
               Text("Ataques:"),
               
-              Row(
-                children: [
-                  Checkbox(
-                    value: _fisico,
-                    onChanged: (val){
-                      setState(() {
-                        _fisico = !_fisico;
-                      });
-                    }
-                  ), Text("Físico"),
-                  
-                  Checkbox(
-                    value: _magico,
-                    onChanged: (val){
-                      setState(() {
-                        _magico = !_magico;
-                      });
-                    }
-                  ), Text("Mágico"),
-              
-                ],
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Checkbox(
+                      value: _fisico,
+                      onChanged: (val){
+                        setState(() {
+                          _fisico = !_fisico;
+                        });
+                      }
+                    ), Text("Físico"),
+                    
+                    SizedBox(width: 150),
+
+                    Checkbox(
+                      value: _magico,
+                      onChanged: (val){
+                        setState(() {
+                          _magico = !_magico;
+                        });
+                      }
+                    ), Text("Mágico"),
+                
+                  ],
+                ),
               ),
               
+              SizedBox(height: 30),
+
               SwitchListTile(
                 title: Text("Raro"),
                 value: _raro,
@@ -201,10 +211,23 @@ class _MyFormState extends State<MyForm> {
                 })
               ),
               
-              ElevatedButton.icon(
-                onPressed: (){},
-                icon: Icon(Icons.catching_pokemon_sharp),
-                label: Text("Registrar"),
+              SizedBox(height: 30),
+
+              Container(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.only(top: 15, bottom: 15))
+                  ),
+                  onPressed: (){},
+                  icon: Icon(Icons.catching_pokemon_sharp),
+                  label: Text(
+                    "Registrar",
+                    style: TextStyle(
+                      fontSize: 22
+                    ),
+                  ),
+                ),
               )
             ],
           ),
