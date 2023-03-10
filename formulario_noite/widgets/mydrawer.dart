@@ -13,6 +13,55 @@ class MyDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             child: MyDrawerHeader()
+          ),
+
+          ListTile(
+            title: Text(
+              "Sobre",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 16
+              ),
+            ),
+            trailing: Icon(Icons.business, color: Colors.grey),
+            leading: Icon(Icons.arrow_right, color: Colors.grey),
+          ),
+
+          Divider(),
+
+          ListTile(
+            title: Text(
+              "História",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 16
+              ),
+            ),
+            trailing: Icon(Icons.book_outlined, color: Colors.grey),
+            leading: Icon(Icons.arrow_right, color: Colors.grey),
+          ),
+
+          Divider(),
+
+          ListTile(
+            title: Text(
+              "Produtos",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 16
+              ),
+            ),
+            trailing: Icon(Icons.attach_money, color: Colors.grey),
+            leading: Icon(Icons.arrow_right, color: Colors.grey),
+          ),
+
+          Container(
+            height: 200,
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              "by LittleTooth",
+              style: TextStyle(color: Colors.white),
+            )
           )
         ],
       ),
@@ -20,6 +69,7 @@ class MyDrawer extends StatelessWidget {
   }
 }
 
+//////////////////////////////////////////////////////
 
 class MyDrawerHeader extends StatelessWidget {
   const MyDrawerHeader({super.key});
@@ -31,7 +81,7 @@ class MyDrawerHeader extends StatelessWidget {
           Icon(
             Icons.person_2_outlined,
             size: 100,
-            color: Colors.grey,
+            color: Colors.grey
           ),
           Text(
             "Usuário",
